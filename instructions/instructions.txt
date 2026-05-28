@@ -1,0 +1,18 @@
+download xampp latest version -- https://www.apachefriends.org/download.html
+
+see where you are installing the file of xampp usually like c:\xampp
+
+open xampp control panel and start apache server then start MySQL server
+
+open browser search for localhost --> phpMyAdmin --> import database
+
+now import the file login(sql source file)
+
+copy the ims_login folder to the xampp\htdocs paste here
+
+open the browser then search for localhost/ims_login
+
+email : mozillafirefox672@gmail.com
+password : 12345678
+
+that's it 🤖

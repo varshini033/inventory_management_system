@@ -1,0 +1,300 @@
+/* Global site styles: font family and smoothing */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+/* Font variables: set separate families for body, headings, h1, paragraphs and titles */
+:root {
+    --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-heading: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    --font-h1: 'Playfair Display', var(--font-heading);
+    --font-paragraph: 'Inter', var(--font-body);
+    --font-title: 'Poppins', var(--font-heading);
+}
+
+.row-arrow .icon { width: 16px; height: 16px; display:inline-flex; align-items:center; justify-content:center; }
+
+:root {
+    --base-font-size: 16px;
+}
+
+html, body {
+    font-family: var(--font-body);
+    font-size: var(--base-font-size);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #222;
+}
+
+/* Make headings inherit the same font weight/stack */
+/* Apply distinct font stacks for headings and h1 */
+h1 {
+    font-family: var(--font-h1);
+    font-weight: 700;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+}
+
+/* Paragraphs and small text use the paragraph/body font */
+p, li, span, label {
+    font-family: var(--font-paragraph);
+}
+
+/* Small utilities */
+small { font-size: 0.875em; }
+
+/* Animated, blurred gradient background */
+/* Uses a fixed pseudo-element so content remains interactive and performance is acceptable */
+body {
+    position: relative;
+    min-height: 100vh; /* ensure full viewport coverage */
+    overflow-x: hidden;
+    background-color: rgba(10, 10, 10, 0.819);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0; /* top:0; right:0; bottom:0; left:0 */
+    z-index: -1; /* sit behind all content */
+    background: linear-gradient(270deg, #982648a3 0%, #7c848380 25%, #71a3b684 50%, #60b2e577 75%, #53f4ff87 100%);
+    background-size: 800% 800%;
+    animation: GradientShift 20s ease infinite;
+    filter: blur(100px) saturate(100%);
+    opacity: 0.75;
+    pointer-events: none; /* allow clicks through */
+    transform: translateZ(0); /* promote to its own layer for smoother animation */
+}
+
+/* Optional subtle overlay to tone the gradient and improve text contrast */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.02); /* tiny lightening layer */
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+}
+
+@keyframes GradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Ensure large content areas remain readable */
+main, header, nav, .container {
+    position: relative; /* keep above the pseudo background */
+}
+
+nav{
+    padding:0;
+    background-color: rgba(0, 0, 0, 0.285);
+}
+
+.nav-item{
+    color: rgba(255, 255, 255, 0.611);
+    padding: 2px 0 2px 0;
+}
+
+.nav-item:active{
+    color: white;
+}
+
+.left-panel, .table-container{
+    margin-top: 1rem;
+}
+
+.table-actions{
+    text-align: right;
+}
+
+/* Table styling: static, theme-matching frosted color */
+/* Generic table: very dark static background, light text for contrast */
+.table-container table,
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #071226; /* very dark static background */
+    border: 1px solid rgba(255,255,255,0.04);
+    color: #e6eef8; /* light text for readability */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.table-container thead th,
+table thead th {
+    background: #0b1220; /* slightly different dark for header */
+    color: #f3f8ff;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 12px;
+}
+
+/* Navigation icons (PNG) sizing and spacing */
+.nav-icon {
+    padding: .25rem;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: 8px;
+    vertical-align: middle;
+    filter: drop-shadow(0 1px 0 rgba(0,0,0,0.2));
+}
+
+/* Input icon used inside form input groups */
+.input-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    margin-right: 8px;
+    vertical-align: middle;
+    display: inline-block;
+    filter: none;
+}
+
+.input-group { display: flex; align-items: center; gap: 6px; }
+
+/* Table edit toolbar styling */
+.table-edit-toolbar {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+}
+
+.table-edit-toolbar .te-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: rgba(255,255,255,0.03);
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.table-edit-toolbar .te-btn img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+}
+
+.table-edit-toolbar .te-btn:hover { background: rgba(255,255,255,0.06); }
+
+.table-edit-toolbar .save-selected:hover { background: linear-gradient(90deg, #2ecc71, #27ae60); color: white; }
+.table-edit-toolbar .delete-selected:hover { background: linear-gradient(90deg, #e74c3c, #c0392b); color: white; }
+.table-edit-toolbar .cancel-edit:hover { background: rgb(0, 0, 0); color: #e6eef8; }
+
+/* Edit button used outside toolbar */
+.btn.btn-secondary.edit-btn {
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0);
+    border: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.btn.btn-secondary.edit-btn img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+}
+.btn.btn-secondary.edit-btn:hover { background: rgba(255, 255, 255, 0.341); }
+.btn.btn-secondary.edit-btn:focus { outline: 1px solid rgba(252, 252, 252, 0.879); }
+
+.user-info{
+    align-items: anchor-center;
+}
+
+.logout-icon { width: 28px; height: 28px; }
+
+.table-container tbody td,
+table tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.table-container tbody tr:nth-child(even) {
+    background: rgba(255,255,255,0.01); /* very subtle striping on dark background */
+}
+
+.table-container tfoot td,
+table tfoot td {
+    padding: 10px 12px;
+    color: rgba(255, 255, 255, 0.9);
+    background-color: black;
+}
+
+/* Make links inside tables inherit color for consistency */
+.table-container a,
+table a {
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* Small responsiveness */
+@media (max-width: 640px) {
+    .table-container thead th, .table-container tbody td { padding: 8px; }
+}
+
+/* Row corner arrow buttons */
+.corner-col { width: 36px; max-width:36px; }
+.row-arrow { text-align: center; vertical-align: middle; padding: 6px 4px; }
+.row-arrow-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255,255,255,0.03);
+    color: #e6eef8;
+    cursor: pointer;
+}
+.row-arrow-btn:hover { background: rgba(255,255,255,0.06); }
+.row-arrow-btn:active { transform: translateY(1px); }
+.row-arrow .icon { width: 16px; height: 16px; display:inline-flex; align-items:center; justify-content:center; }
+
+/* Make sure the extra columns don't wrap on small screens */
+@media (max-width: 640px) {
+    .corner-col { width: 32px; }
+    .row-arrow-btn { width: 26px; height: 26px; }
+}
+
+/* Footer arrow styling (decorative/pagination) */
+.tfoot-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(230,238,248,0.95);
+    cursor: pointer;
+    padding: 4px 6px;
+}
+.tfoot-arrow .icon, .tfoot-arrow i {
+    width: 18px; height: 18px; vertical-align: middle; display:inline-flex; align-items:center; justify-content:center;
+}
+.tfoot-arrow.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    cursor: default;
+}
+
+.tfoot-arrow img{
+    width: 28px;
+    height: 28px;;
+}
+
+#table-footer-info{
+    vertical-align: -webkit-baseline-middle;
+}
